@@ -7,11 +7,11 @@
 // </автоматически создаваемое>
 //------------------------------------------------------------------------------
 
-namespace WebDataBase
+namespace WebDataBase.Error_RegisterTable
 {
 
 
-	public partial class NotCorrectInputData
+	public partial class NotExistData
 	{
 
 		/// <summary>

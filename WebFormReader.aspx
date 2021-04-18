@@ -51,7 +51,7 @@
         <table>
             <tr>
                 <td><asp:Button ID="Button2" runat="server" Text="Таблица Книг" OnClick="Button2_Click" /></td>
-                <td><asp:Button ID="Button3" runat="server" Text="Таблица Регистрации" /></td>
+                <td><asp:Button ID="Button3" runat="server" Text="Таблица Регистрации" OnClick="Button3_Click" /></td>
             </tr>
         </table>
         </div>

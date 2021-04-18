@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace WebDataBase.Error_ReaderTable
+namespace WebDataBase.Error_RegisterTable
 {
-	public partial class ExistInRegistration : System.Web.UI.Page
+	public partial class NotExistData : System.Web.UI.Page
 	{
 		protected void Page_Load(object sender, EventArgs e)
 		{

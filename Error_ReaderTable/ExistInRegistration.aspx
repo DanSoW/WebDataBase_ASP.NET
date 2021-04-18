@@ -12,6 +12,9 @@
         <div>
             <asp:Label ID="Label1" runat="server" Text="Ошибка! Данная запись уже зарегистрирована в таблице регистрации и для её удаления необходимо удалить её в таблице регистрации!"></asp:Label>
         </div>
+        <p>
+            <asp:Button ID="Button1" runat="server" Text="Вернуться на главную" OnClick="Button1_Click" />
+        </p>
     </form>
 </body>
 </html>

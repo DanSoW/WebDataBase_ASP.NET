@@ -12,6 +12,9 @@
         <div>
             <asp:Label ID="Label1" runat="server" Text="Ошибка! Были введены не корректные данные!"></asp:Label>
         </div>
+        <p>
+            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Вернуться на главную" />
+        </p>
     </form>
 </body>
 </html>

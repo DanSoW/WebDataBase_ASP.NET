@@ -103,9 +103,9 @@ namespace WebDataBase
 			return true;
 		}
 
-		public bool passwordDataValidate(String psw)
+		public static bool passwordDataValidate(String psw)
 		{
-			if (psw.Length != MAX_SIZE_PASS)
+			if ((psw.Length != MAX_SIZE_PASS) || (psw[0] == '0'))
 				return false;
 			bool flag = true;
 			foreach (var i in psw)
@@ -155,6 +155,11 @@ namespace WebDataBase
 		protected void Button2_Click(object sender, EventArgs e)
 		{
 			Server.Transfer("WebFormBook.aspx", false);
+		}
+
+		protected void Button3_Click(object sender, EventArgs e)
+		{
+			Server.Transfer("WebFormRegister.aspx", false);
 		}
 	}
 }

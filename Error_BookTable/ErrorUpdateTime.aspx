@@ -12,6 +12,9 @@
         <div>
             <asp:Label ID="Label1" runat="server" Text="Ошибка! Дата публикации книги должна быть раньше установленного на сервере времени и не быть позднее дат, зарегистрированных в таблице регистрации!"></asp:Label>
         </div>
+        <p>
+            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Вернуться на главную" />
+        </p>
     </form>
 </body>
 </html>

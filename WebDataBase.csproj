@@ -71,9 +71,12 @@
     <Content Include="Error_ReaderTable\ExistInRegistration.aspx" />
     <Content Include="Error_ReaderTable\ExistThisRegister.aspx" />
     <Content Include="Error_ReaderTable\NotCorrectInputData.aspx" />
+    <Content Include="Error_RegisterTable\ErrorInTime.aspx" />
+    <Content Include="Error_RegisterTable\NotExistData.aspx" />
     <Content Include="Web.config" />
     <Content Include="WebFormBook.aspx" />
     <Content Include="WebFormReader.aspx" />
+    <Content Include="WebFormRegister.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Error_BookTable\ErrorUpdateTime.aspx.cs">
@@ -104,6 +107,20 @@
     <Compile Include="Error_ReaderTable\NotCorrectInputData.aspx.designer.cs">
       <DependentUpon>NotCorrectInputData.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Error_RegisterTable\ErrorInTime.aspx.cs">
+      <DependentUpon>ErrorInTime.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error_RegisterTable\ErrorInTime.aspx.designer.cs">
+      <DependentUpon>ErrorInTime.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Error_RegisterTable\NotExistData.aspx.cs">
+      <DependentUpon>NotExistData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error_RegisterTable\NotExistData.aspx.designer.cs">
+      <DependentUpon>NotExistData.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebFormBook.aspx.cs">
       <DependentUpon>WebFormBook.aspx</DependentUpon>
@@ -119,6 +136,13 @@
     <Compile Include="WebFormReader.aspx.designer.cs">
       <DependentUpon>WebFormReader.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WebFormRegister.aspx.cs">
+      <DependentUpon>WebFormRegister.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebFormRegister.aspx.designer.cs">
+      <DependentUpon>WebFormRegister.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -129,9 +153,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Error_RegisterTable\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

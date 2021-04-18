@@ -46,7 +46,7 @@ namespace WebDataBase
 
 		public static bool registerNumberValidate(String psw)
 		{
-			if (psw.Length != MAX_SIZE_REGNUM)
+			if ((psw.Length != MAX_SIZE_REGNUM) || (psw[0] == '0'))
 				return false;
 			bool flag = true;
 			foreach (var i in psw)
@@ -86,11 +86,11 @@ namespace WebDataBase
 			int returnInt = Int32.Parse(returnValue.Value.ToString());
 			if (returnInt == (-3))
 			{
-				Server.Transfer("Error_ReaderTable\\NotCorrectInputData.aspx", true);
+				Server.Transfer("Error_ReaderTable\\NotCorrectInputData.aspx", false);
 				return;
 			}else if(returnInt < 0)
 			{
-				Server.Transfer("Error_BookTable\\ErrorUpdateTime.aspx", true);
+				Server.Transfer("Error_BookTable\\ErrorUpdateTime.aspx", false);
 				return;
 			}
 		}
@@ -115,7 +115,7 @@ namespace WebDataBase
 			DbParameter returnValue = e.Command.Parameters["@RETURN_VALUE"];
 			if (Int32.Parse(returnValue.Value.ToString()) < 0)
 			{
-				Server.Transfer("Error_ReaderTable\\ExistInRegistration.aspx", true);
+				Server.Transfer("Error_ReaderTable\\ExistInRegistration.aspx", false);
 				return;
 			}
 		}
@@ -126,7 +126,7 @@ namespace WebDataBase
 			{
 				TextBox1, TextBox2, TextBox3, TextBox4
 			})) || (!CheckOrientedData(TextBox1.Text, TextBox2.Text, TextBox3.Text, TextBox4.Text))){
-				Server.Transfer("Error_ReaderTable\\NotCorrectInputData.aspx", true);
+				Server.Transfer("Error_ReaderTable\\NotCorrectInputData.aspx", false);
 				return;
 			}
 
@@ -174,6 +174,11 @@ namespace WebDataBase
 		protected void Button2_Click(object sender, EventArgs e)
 		{
 			Server.Transfer("WebFormReader.aspx", false);
+		}
+
+		protected void Button3_Click(object sender, EventArgs e)
+		{
+			Server.Transfer("WebFormRegister.aspx", false);
 		}
 	}
 }

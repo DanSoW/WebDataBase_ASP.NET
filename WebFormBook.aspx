@@ -20,7 +20,7 @@
                     <asp:CommandField ShowDeleteButton="True" />
                 </Columns>
             </asp:GridView>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DataBaseSQLConnectionString %>" DeleteCommand="DeleteBookData" DeleteCommandType="StoredProcedure" InsertCommand="WriteBookData" InsertCommandType="StoredProcedure" SelectCommand="ReadBookData" SelectCommandType="StoredProcedure" UpdateCommand="UpdateBookData" UpdateCommandType="StoredProcedure" OnDeleted="SqlDataSource1_Deleted" OnDeleting="SqlDataSource1_Deleting" OnInserted="SqlDataSource1_Inserted" OnInserting="SqlDataSource1_Inserting" OnUpdated="SqlDataSource1_Updated" OnUpdating="SqlDataSource1_Updating">
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:DataBaseSQLConnectionString %>" DeleteCommand="DeleteBookData" DeleteCommandType="StoredProcedure" InsertCommand="WriteBookData" InsertCommandType="StoredProcedure" SelectCommand="ReadBookData" SelectCommandType="StoredProcedure" UpdateCommand="UpdateBookData" UpdateCommandType="StoredProcedure" OnDeleted="SqlDataSource1_Deleted" OnDeleting="SqlDataSource1_Deleting" OnInserted="SqlDataSource1_Inserted" OnInserting="SqlDataSource1_Inserting" OnUpdated="SqlDataSource1_Updated" OnUpdating="SqlDataSource1_Updating" OldValuesParameterFormatString="Register_Number">
                 <DeleteParameters>
                     <asp:Parameter Name="Register_Number" Type="Int64" />
                     <asp:Parameter Direction="ReturnValue" Name="RETURN_VALUE" Type="Int32" />
@@ -59,7 +59,7 @@
         <table>
             <tr>
                 <td><asp:Button ID="Button2" runat="server" Text="Таблица Читателей" OnClick="Button2_Click" /></td>
-                <td><asp:Button ID="Button3" runat="server" Text="Таблица Регистрации" /></td>
+                <td><asp:Button ID="Button3" runat="server" Text="Таблица Регистрации" OnClick="Button3_Click" /></td>
             </tr>
         </table>
         </div>

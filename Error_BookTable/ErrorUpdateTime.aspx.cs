@@ -13,5 +13,10 @@ namespace WebDataBase.Error_BookTable
 		{
 
 		}
+
+		protected void Button1_Click(object sender, EventArgs e)
+		{
+			Server.Transfer("..\\WebFormReader.aspx", false);
+		}
 	}
 }

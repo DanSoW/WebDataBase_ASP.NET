@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ExistThisRegister.aspx.cs" Inherits="WebDataBase.ExistThisRegister" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="NotExistData.aspx.cs" Inherits="WebDataBase.Error_RegisterTable.NotExistData" %>
 
 <!DOCTYPE html>
 
@@ -10,8 +10,8 @@
 <body>
     <form id="form1" runat="server">
         <div>
+            <asp:Label ID="Label1" runat="server" Text="Ошибка! Указанный регистрационный номер или паспортные данные не присутствуют в базе данных!"></asp:Label>
         </div>
-        <asp:Label ID="Label1" runat="server" Text="Ошибка! Данная запись уже присутствует в таблице!"></asp:Label>
         <p>
             <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Вернуться на главную" />
         </p>
