@@ -18,7 +18,7 @@
         <div>
             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="ID" DataSourceID="SqlDataSource1">
                 <Columns>
-                    <asp:BoundField DataField="ID" HeaderText="ID" SortExpression="ID" />
+                    <asp:BoundField DataField="ID" HeaderText="ID" ReadOnly="True" SortExpression="ID" />
                     <asp:BoundField DataField="Book_Register_Number" HeaderText="Book_Register_Number" SortExpression="Book_Register_Number" ReadOnly="True" />
                     <asp:BoundField DataField="Reader_Password_Data" HeaderText="Reader_Password_Data" SortExpression="Reader_Password_Data" ReadOnly="True" />
                     <asp:BoundField DataField="Date_Issue" HeaderText="Date_Issue" SortExpression="Date_Issue" />
@@ -60,7 +60,7 @@
                 <td><asp:TextBox ID="TextBox2" runat="server"></asp:TextBox></td>
                 <td><asp:TextBox ID="TextBox3" runat="server"></asp:TextBox></td>
                 <td><asp:TextBox ID="TextBox4" runat="server"></asp:TextBox></td>
-                <td><asp:Button ID="Button1" runat="server" Text="Добавить" Width="82px" OnClick="Button1_Click" style="height: 29px" /></td>
+                <td><asp:Button ID="Button1" runat="server" Text="Добавить" Width="82px" OnClick="Button1_Click" /></td>
             </tr>
         </table>
             <br /><br />

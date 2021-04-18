@@ -201,6 +201,11 @@ namespace WebDataBase
 
 		protected void Button1_Click(object sender, EventArgs e)
 		{
+			TextBox1.Text = TextBox1.Text.Trim();
+			TextBox2.Text = TextBox2.Text.Trim();
+			TextBox3.Text = TextBox3.Text.Trim();
+			TextBox4.Text = TextBox4.Text.Trim();
+
 			if ((!WebFormDefault.CheckTextBoxes(new List<TextBox>()
 			{
 				TextBox1, TextBox2, TextBox3, TextBox4
@@ -240,6 +245,7 @@ namespace WebDataBase
 
 		protected void Button4_Click(object sender, EventArgs e)
 		{
+			TextBox5.Text = TextBox5.Text.Trim();
 			if (TextBox5.Text.Length == 0)
 			{
 				return;
@@ -334,6 +340,7 @@ namespace WebDataBase
 
 		protected void Button5_Click(object sender, EventArgs e)
 		{
+			TextBox6.Text = TextBox6.Text.Trim();
 			if (TextBox6.Text.Length != WebFormDefault.MAX_SIZE_PASS)
 			{
 				return;

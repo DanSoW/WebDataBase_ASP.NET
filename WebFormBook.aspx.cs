@@ -122,7 +122,12 @@ namespace WebDataBase
 
 		protected void Button1_Click(object sender, EventArgs e)
 		{
-			if((!WebFormDefault.CheckTextBoxes(new List<TextBox>()
+			TextBox1.Text = TextBox1.Text.Trim();
+			TextBox2.Text = TextBox2.Text.Trim();
+			TextBox3.Text = TextBox3.Text.Trim();
+			TextBox4.Text = TextBox4.Text.Trim();
+
+			if ((!WebFormDefault.CheckTextBoxes(new List<TextBox>()
 			{
 				TextBox1, TextBox2, TextBox3, TextBox4
 			})) || (!CheckOrientedData(TextBox1.Text, TextBox2.Text, TextBox3.Text, TextBox4.Text))){
