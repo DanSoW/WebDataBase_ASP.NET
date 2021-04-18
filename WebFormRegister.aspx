@@ -6,6 +6,12 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
+    <style type="text/css">
+        #TextArea1 {
+            height: 100px;
+            width: 614px;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -64,7 +70,34 @@
                 <td><asp:Button ID="Button3" runat="server" Text="Таблица Читателей" OnClick="Button3_Click" /></td>
             </tr>
         </table>
+            <br />
         </div>
+        <asp:Label ID="Label1" runat="server" Text="Вывести список читателей, которые держат на руках книгу более "></asp:Label>
+&nbsp;<asp:TextBox ID="TextBox5" runat="server" Height="20px" Width="26px"></asp:TextBox>
+&nbsp;<asp:Label ID="Label2" runat="server" Text="месяц(-а/-ев)"></asp:Label>
+        <br />
+        <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="Вывести" />
+        <br />
+        <br />
+        <asp:GridView ID="GridView2" runat="server">
+        </asp:GridView>
+        <br />
+        <br />
+&nbsp;<p>
+            <asp:Label ID="Label3" runat="server" Text="Вывести список книг, зарегистрированных под читателя с регистрационным номером:"></asp:Label>
+        </p>
+        <p>
+            <asp:TextBox ID="TextBox6" runat="server" Width="161px"></asp:TextBox>
+        </p>
+        <p>
+            <asp:Button ID="Button5" runat="server" OnClick="Button5_Click" Text="Вывести" Width="129px" />
+        </p>
+        <p>
+            <asp:GridView ID="GridView3" runat="server">
+            </asp:GridView>
+        </p>
+        <p>
+            &nbsp;</p>
     </form>
 </body>
 </html>

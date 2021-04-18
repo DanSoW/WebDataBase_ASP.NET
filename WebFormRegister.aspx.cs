@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Common;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -209,6 +211,221 @@ namespace WebDataBase
 
 			SqlDataSource1.Insert();
 			GridView1.DataBind();
+		}
+
+		private int numberBorrowedBooks(string passwordNumber)
+		{
+			int count = 0;
+			for (int i = 0; i < GridView1.Rows.Count; i++)
+			{
+				if (GridView1.Rows[i].Cells[2].Text.Equals(passwordNumber))
+					count++;
+			}
+
+			return count;
+		}
+
+		int compare(DataElement o1, DataElement o2)
+		{
+			string[] dateString = o1.dataIssue.Split(new char[] { '.' });
+			DateTime date1 = new DateTime(int.Parse(dateString[2]), int.Parse(dateString[1]),
+				int.Parse(dateString[0]));
+
+			dateString = o2.dataIssue.Split(new char[] { '.' });
+			DateTime date2 = new DateTime(int.Parse(dateString[2]), int.Parse(dateString[1]),
+				int.Parse(dateString[0]));
+
+			return date1.CompareTo(date2);
+		}
+
+		protected void Button4_Click(object sender, EventArgs e)
+		{
+			if (TextBox5.Text.Length == 0)
+			{
+				return;
+			}
+
+			for(int i = 0; i < TextBox5.Text.Length; i++)
+			{
+				if (!Char.IsDigit(TextBox5.Text[i]))
+					return;
+			}
+
+			DataTable dataTable = new DataTable();
+			DataTable dataGridTable = new DataTable();
+			String[] headersTable = new string[6]{
+			"ФИО",
+			"Паспортные данные",
+			"Регистрационный номер",
+			"Дата выдачи",
+			"Дата возврата",
+			"Количество взятых книг" };
+			for(int i = 0; i < headersTable.Length-1; i++)
+			{
+				dataTable.Columns.Add(headersTable[i]);
+			}
+
+			for (int i = 0; i < headersTable.Length; i++)
+			{
+				dataGridTable.Columns.Add(headersTable[i]);
+			}
+
+			using (SqlConnection sqlConnection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=DataBaseSQL;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"))
+			{
+				sqlConnection.Open();
+
+				using (SqlCommand command = new SqlCommand("dbo.TaskOneT", sqlConnection))
+				{
+					command.CommandType = System.Data.CommandType.StoredProcedure;
+
+					command.Parameters.AddWithValue("@monthValue", int.Parse(TextBox5.Text));
+					SqlDataReader sqlReader = command.ExecuteReader();
+					if (sqlReader.HasRows)
+					{
+						while (sqlReader.Read())
+						{
+							String fullName = sqlReader.GetValue(0).ToString();
+							String pwd = sqlReader.GetValue(1).ToString();
+							String reg = sqlReader.GetValue(2).ToString();
+
+							while (pwd.Length != 10)
+								pwd = ("0" + pwd);
+
+							while (reg.Length != 10)
+								reg = ("0" + reg);
+
+							dataTable.Rows.Add(fullName, pwd, reg,
+								sqlReader.GetValue(3).ToString().Split(new char[] { ' ' })[0],
+								sqlReader.GetValue(4).ToString().Split(new char[] { ' ' })[0]);
+						}
+					}
+					sqlReader.Close();
+				}
+
+				for (int i = 0; i < dataTable.Rows.Count; i++)
+				{
+					using (SqlCommand command2 = new SqlCommand("dbo.DefineBookCounter", sqlConnection))
+					{
+						command2.CommandType = System.Data.CommandType.StoredProcedure;
+
+						SqlParameter valueReturn = new SqlParameter("@RETURN_VALUE", SqlDbType.Int);
+						valueReturn.Direction = ParameterDirection.ReturnValue;
+
+						command2.Parameters.Add(valueReturn);
+						command2.Parameters.AddWithValue("@Reader_Password_Data", long.Parse(dataTable.Rows[i].ItemArray[1].ToString()));
+						command2.ExecuteScalar();
+
+						dataGridTable.Rows.Add(
+							dataTable.Rows[i].ItemArray[0].ToString(),
+							dataTable.Rows[i].ItemArray[1].ToString(),
+							dataTable.Rows[i].ItemArray[2].ToString(),
+							dataTable.Rows[i].ItemArray[3].ToString(),
+							dataTable.Rows[i].ItemArray[4].ToString(),
+							Convert.ToString(valueReturn.Value));
+					}
+				}
+
+				sqlConnection.Close();
+			}
+
+			GridView2.DataSource = dataGridTable;
+			GridView2.DataBind();
+		}
+
+		protected void Button5_Click(object sender, EventArgs e)
+		{
+			if (TextBox6.Text.Length != WebFormDefault.MAX_SIZE_PASS)
+			{
+				return;
+			}
+
+			for (int i = 0; i < TextBox6.Text.Length; i++)
+			{
+				if (!Char.IsDigit(TextBox6.Text[i]))
+					return;
+			}
+
+			List<DataElement> elements = new List<DataElement>();
+
+			using (SqlConnection sqlConnection = new SqlConnection("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=DataBaseSQL;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"))
+			{
+				sqlConnection.Open();
+
+				using (SqlCommand command = new SqlCommand("dbo.TaskTwot", sqlConnection))
+				{
+					command.CommandType = System.Data.CommandType.StoredProcedure;
+					command.Parameters.AddWithValue("@Reader_Password_Data", long.Parse(TextBox6.Text));
+					SqlDataReader sqlReader = command.ExecuteReader();
+					if (sqlReader.HasRows)
+					{
+						while (sqlReader.Read())
+						{
+							String reg = sqlReader.GetValue(0).ToString();
+
+							while (reg.Length != 10)
+								reg = ("0" + reg);
+
+							elements.Add(new DataElement(reg,
+								sqlReader.GetValue(1).ToString().Split(new char[] { ' ' })[0],
+							int.Parse(sqlReader.GetValue(2).ToString()),
+							sqlReader.GetValue(3).ToString()));
+						}
+					}
+					sqlReader.Close();
+				}
+
+				sqlConnection.Close();
+			}
+
+			elements.Sort(new Comparison<DataElement>(compare));
+
+			DataTable dataTable = new DataTable();
+			String[] headersTable = new string[]
+			{
+				"Регистрационный номер",
+				"Дата выдачи",
+				"Количество страниц",
+				"Раздел"
+			};
+
+			for(int i = 0; i < headersTable.Length; i++)
+			{
+				dataTable.Columns.Add(headersTable[i]);
+			}
+
+			for (int i = 0; i < elements.Count; i++)
+			{
+				dataTable.Rows.Add(
+					elements[i].register,
+					elements[i].dataIssue,
+					elements[i].pages,
+					elements[i].section);
+			}
+
+			GridView3.DataSource = dataTable;
+			GridView3.DataBind();
+		}
+	}
+
+	struct DataElement
+	{
+		public string register;
+		public string dataIssue;
+		public int pages;
+		public string section;
+
+		public DataElement(string reg, string data, int pages, string section)
+		{
+			this.register = reg;
+			this.dataIssue = data;
+			this.pages = pages;
+			this.section = section;
+		}
+
+		public override string ToString()
+		{
+			return register + ", " + dataIssue + ", " + pages.ToString()
+				+ ", " + section;
 		}
 	}
 }
