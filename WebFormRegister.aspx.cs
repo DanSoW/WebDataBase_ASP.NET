@@ -463,7 +463,6 @@ namespace WebDataBase
 			{
 				excelBook.Close();
 				excelApp.Quit();
-				System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
 			}catch (Exception) { }
 
 			for (int i = 1; i < maping.Count; i++)
@@ -479,6 +478,7 @@ namespace WebDataBase
 
 			GridView2.DataSource = dataTable;
 			GridView2.DataBind();
+			System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
 		}
 
 		protected void Button7_Click(object sender, EventArgs e)
@@ -522,9 +522,10 @@ namespace WebDataBase
 			try
 			{
 				excelApp.Quit();
-				System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
 			}
 			catch (Exception) { }
+
+			System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
 		}
 	}
 
