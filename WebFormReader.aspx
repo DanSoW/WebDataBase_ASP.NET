@@ -6,9 +6,17 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
+    <script> 
+        function EnsureNumeric()
+        {
+            var key = window.event.keyCode; 
+            if ((key < 48) || (key > 57)) 
+                window.event.returnValue = false; 
+        }
+    </script>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" aria-live="off">
         <div>
             <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="Password_Data" DataSourceID="SqlDataSource1">
                 <Columns>
@@ -41,10 +49,10 @@
         <table>
             <tr><td>Паспортные данные</td><td>Домашний адрес</td><td>ФИО</td></tr>
             <tr>
-                <td><asp:TextBox ID="TextBox1" runat="server"></asp:TextBox></td>
+                <td><asp:TextBox ID="TextBox1" runat="server" OnKeyPress="EnsureNumeric()"></asp:TextBox></td>
                 <td><asp:TextBox ID="TextBox2" runat="server"></asp:TextBox></td>
                 <td><asp:TextBox ID="TextBox3" runat="server"></asp:TextBox></td>
-                <td><asp:Button ID="Button1" runat="server" Text="Добавить" Width="82px" OnClick="Button1_Click" /></td>
+                <td><asp:Button ID="Button1" runat="server" Text="Добавить" Width="82px" OnClick="Button1_Click" />&nbsp; </td>
             </tr>
         </table>
         <br /><br />
@@ -54,6 +62,7 @@
                 <td><asp:Button ID="Button3" runat="server" Text="Таблица Регистрации" OnClick="Button3_Click" /></td>
             </tr>
         </table>
+            <br />
         </div>
     </form>
 </body>

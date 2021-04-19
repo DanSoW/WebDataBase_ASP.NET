@@ -13,10 +13,11 @@ namespace WebDataBase
 	public partial class WebFormRegister : System.Web.UI.Page
 	{
 		public const int MAX_SIZE_DATE = 10;
+		static HttpCookie httpCookie = new HttpCookie("IDCookie", (-1).ToString());
 
 		protected void Page_Load(object sender, EventArgs e)
 		{
-
+			Request.Cookies.Add(httpCookie);
 		}
 
 		private bool CheckOrientedData(String reg, String pwd, String dateIssue, String dateReturn)
@@ -151,6 +152,8 @@ namespace WebDataBase
 				Server.Transfer("Error_RegisterTable\\ErrorInConflictDate.aspx", false);
 				return;
 			}
+
+			httpCookie.Value = (-1).ToString();
 		}
 
 		protected void SqlDataSource1_Inserting(object sender, SqlDataSourceCommandEventArgs e)
@@ -210,15 +213,13 @@ namespace WebDataBase
 
 		protected void Button1_Click(object sender, EventArgs e)
 		{
-			TextBox1.Text = TextBox1.Text.Trim();
-			TextBox2.Text = TextBox2.Text.Trim();
 			TextBox3.Text = TextBox3.Text.Trim();
 			TextBox4.Text = TextBox4.Text.Trim();
 
-			if ((!WebFormDefault.CheckTextBoxes(new List<TextBox>()
-			{
-				TextBox1, TextBox2, TextBox3, TextBox4
-			})) || (!CheckOrientedData(TextBox1.Text, TextBox2.Text, TextBox3.Text, TextBox4.Text))){
+			string reg = DropDownList1.SelectedValue.Trim();
+			string pas = DropDownList2.SelectedValue.Trim();
+
+			if ((!CheckOrientedData(reg, pas, TextBox3.Text, TextBox4.Text))){
 				Server.Transfer("Error_ReaderTable\\NotCorrectInputData.aspx", false);
 				return;
 			}
@@ -526,6 +527,27 @@ namespace WebDataBase
 			catch (Exception) { }
 
 			System.Runtime.InteropServices.Marshal.ReleaseComObject(excelApp);
+		}
+
+		protected void Button8_Click(object sender, EventArgs e)
+		{
+			if (int.Parse(httpCookie.Value) < 0)
+			{
+				Server.Transfer("Error_ReaderTable\\NotCorrectInputData.aspx", false);
+				return;
+			}
+
+			SqlDataSource1.Update();
+			GridView1.DataBind();
+		}
+
+		protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			DropDownList1.SelectedValue = GridView1.SelectedRow.Cells[1].Text;
+			DropDownList2.SelectedValue = GridView1.SelectedRow.Cells[2].Text;
+			TextBox3.Text = GridView1.SelectedRow.Cells[3].Text.Split(' ')[0];
+			TextBox4.Text = GridView1.SelectedRow.Cells[4].Text.Split(' ')[0];
+			httpCookie.Value = (GridView1.SelectedRow.RowIndex + 1).ToString();
 		}
 	}
 

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Common;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -184,6 +186,36 @@ namespace WebDataBase
 		protected void Button3_Click(object sender, EventArgs e)
 		{
 			Server.Transfer("WebFormRegister.aspx", false);
+		}
+
+		protected void Button4_Click(object sender, EventArgs e)
+		{
+			if ((GridView1 == null) 
+				|| (GridView1.SelectedRow == null) 
+				|| (GridView1.SelectedRow.RowIndex < 0) 
+				|| (!CheckOrientedData(
+					GridView1.SelectedRow.Cells[0].Text,
+					GridView1.SelectedRow.Cells[1].Text,
+					GridView1.SelectedRow.Cells[2].Text,
+					GridView1.SelectedRow.Cells[3].Text)))
+			{
+				Server.Transfer("Error_ReaderTable\\NotCorrectInputData.aspx", false);
+				return;
+			}
+			
+			SqlDataSource1.Update();
+			GridView1.DataBind();
+			TextBox1.ReadOnly = false;
+		}
+
+		protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			TextBox1.Text = GridView1.SelectedRow.Cells[0].Text;
+			TextBox2.Text = GridView1.SelectedRow.Cells[1].Text;
+			TextBox3.Text = GridView1.SelectedRow.Cells[2].Text;
+			TextBox4.Text = GridView1.SelectedRow.Cells[3].Text;
+
+			TextBox1.ReadOnly = true;
 		}
 	}
 }

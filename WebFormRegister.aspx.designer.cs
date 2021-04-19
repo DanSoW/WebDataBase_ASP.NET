@@ -42,22 +42,40 @@ namespace WebDataBase
 		protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
 
 		/// <summary>
-		/// TextBox1 элемент управления.
+		/// DropDownList1 элемент управления.
 		/// </summary>
 		/// <remarks>
 		/// Автоматически создаваемое поле.
 		/// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox TextBox1;
+		protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
 
 		/// <summary>
-		/// TextBox2 элемент управления.
+		/// SqlDataSource2 элемент управления.
 		/// </summary>
 		/// <remarks>
 		/// Автоматически создаваемое поле.
 		/// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
 		/// </remarks>
-		protected global::System.Web.UI.WebControls.TextBox TextBox2;
+		protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource2;
+
+		/// <summary>
+		/// DropDownList2 элемент управления.
+		/// </summary>
+		/// <remarks>
+		/// Автоматически создаваемое поле.
+		/// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.DropDownList DropDownList2;
+
+		/// <summary>
+		/// SqlDataSource3 элемент управления.
+		/// </summary>
+		/// <remarks>
+		/// Автоматически создаваемое поле.
+		/// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource3;
 
 		/// <summary>
 		/// TextBox3 элемент управления.
@@ -85,6 +103,15 @@ namespace WebDataBase
 		/// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
 		/// </remarks>
 		protected global::System.Web.UI.WebControls.Button Button1;
+
+		/// <summary>
+		/// Button8 элемент управления.
+		/// </summary>
+		/// <remarks>
+		/// Автоматически создаваемое поле.
+		/// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Button Button8;
 
 		/// <summary>
 		/// Button2 элемент управления.

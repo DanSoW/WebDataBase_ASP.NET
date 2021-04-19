@@ -124,6 +124,7 @@ namespace WebDataBase
 			TextBox2.Text = TextBox2.Text.Trim();
 			TextBox3.Text = TextBox3.Text.Trim();
 
+			
 			if ((!CheckTextBoxes(new List<TextBox>() { this.TextBox1,
 			this.TextBox2, this.TextBox3}))
 			|| (!CheckOrientedData(this.TextBox1.Text, this.TextBox2.Text, this.TextBox3.Text)))
