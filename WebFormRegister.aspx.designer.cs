@@ -141,6 +141,42 @@ namespace WebDataBase
 		protected global::System.Web.UI.WebControls.Button Button4;
 
 		/// <summary>
+		/// Button6 элемент управления.
+		/// </summary>
+		/// <remarks>
+		/// Автоматически создаваемое поле.
+		/// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Button Button6;
+
+		/// <summary>
+		/// File1 элемент управления.
+		/// </summary>
+		/// <remarks>
+		/// Автоматически создаваемое поле.
+		/// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+		/// </remarks>
+		protected global::System.Web.UI.HtmlControls.HtmlInputFile File1;
+
+		/// <summary>
+		/// Button7 элемент управления.
+		/// </summary>
+		/// <remarks>
+		/// Автоматически создаваемое поле.
+		/// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+		/// </remarks>
+		protected global::System.Web.UI.WebControls.Button Button7;
+
+		/// <summary>
+		/// File2 элемент управления.
+		/// </summary>
+		/// <remarks>
+		/// Автоматически создаваемое поле.
+		/// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+		/// </remarks>
+		protected global::System.Web.UI.HtmlControls.HtmlInputFile File2;
+
+		/// <summary>
 		/// GridView2 элемент управления.
 		/// </summary>
 		/// <remarks>

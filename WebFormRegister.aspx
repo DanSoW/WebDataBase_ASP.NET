@@ -79,6 +79,15 @@
         <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="Вывести" />
         <br />
         <br />
+        <asp:Button ID="Button6" runat="server" OnClick="Button6_Click" Text="Вывести из таблицы" />
+&nbsp;&nbsp;
+        <input id="File1" type="file" runat="server"/><br />
+        <br />
+        <br />
+        <asp:Button ID="Button7" runat="server" OnClick="Button7_Click" Text="Добавить в таблицу" />
+&nbsp;&nbsp;&nbsp;
+        <input id="File2" type="file" runat="server"/><br />
+        <br />
         <asp:GridView ID="GridView2" runat="server">
         </asp:GridView>
         <br />
