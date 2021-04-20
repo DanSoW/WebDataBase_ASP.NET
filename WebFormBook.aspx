@@ -6,14 +6,6 @@
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
-    <script> 
-        function EnsureNumeric()
-        {
-            var key = window.event.keyCode; 
-            if ((key < 48) || (key > 57)) 
-                window.event.returnValue = false; 
-        }
-    </script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -56,9 +48,9 @@
         <table>
             <tr><td>Регистрационный номер</td><td>Количество страниц</td><td>Год публикации</td><td>Раздел</td></tr>
             <tr>
-                <td><asp:TextBox ID="TextBox1" runat="server" OnKeyPress="EnsureNumeric()"></asp:TextBox></td>
-                <td><asp:TextBox ID="TextBox2" runat="server" OnKeyPress="EnsureNumeric()"></asp:TextBox></td>
-                <td><asp:TextBox ID="TextBox3" runat="server" OnKeyPress="EnsureNumeric()"></asp:TextBox></td>
+                <td><asp:TextBox ID="TextBox1" runat="server"></asp:TextBox></td>
+                <td><asp:TextBox ID="TextBox2" runat="server"></asp:TextBox></td>
+                <td><asp:TextBox ID="TextBox3" runat="server"></asp:TextBox></td>
                 <td><asp:TextBox ID="TextBox4" runat="server"></asp:TextBox></td>
                 <td><asp:Button ID="Button1" runat="server" Text="Добавить" Width="82px" OnClick="Button1_Click" />&nbsp;
                     <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="Правка" />
@@ -72,7 +64,22 @@
                 <td><asp:Button ID="Button3" runat="server" Text="Таблица Регистрации" OnClick="Button3_Click" /></td>
             </tr>
         </table>
+            <br />
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="TextBox1" ErrorMessage="Ошибка! Ввод для регистрационного номера доступен только для цифр и его длина должна быть 10" ValidationExpression="^\d+$" ValidateRequestMode="Enabled">Ошибка! Ввод для регистрационного номера доступен только для цифр и его длина должна быть 10</asp:RegularExpressionValidator>
         </div>
+        <asp:RangeValidator ID="RangeValidator1" runat="server" ControlToValidate="TextBox2" ErrorMessage="Ошибка! Число количества страниц должно быть в диапазоне [1; 10000]" MaximumValue="10000" MinimumValue="1" Type="Integer" ValidateRequestMode="Enabled">Ошибка! Число количества страниц должно быть в диапазоне [1; 10000]</asp:RangeValidator>
+        <br />
+        <asp:RangeValidator ID="RangeValidator2" runat="server" ControlToValidate="TextBox3" ErrorMessage="Ошибка! Год публикации должен быть в диапазоне [1; 9999]" MaximumValue="9999" MinimumValue="1" Type="Integer" ValidateRequestMode="Enabled">Ошибка! Год публикации должен быть в диапазоне [1; 9999]</asp:RangeValidator>
+        <br />
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBox4" ErrorMessage="Ошибка! Поле раздела должно быть заполнено!" ValidateRequestMode="Enabled">Ошибка! Поле раздела должно быть заполнено!</asp:RequiredFieldValidator>
+        <br />
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TextBox1" ErrorMessage="Ошибка! Поле для ввода регистрационного номера должно быть заполнено!" EnableViewState="False">Ошибка! Поле для ввода регистрационного номера должно быть заполнено!</asp:RequiredFieldValidator>
+        <br />
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TextBox2" ErrorMessage="Ошибка! Поле для ввода количества страниц должно быть заполнено!"></asp:RequiredFieldValidator>
+        <br />
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TextBox3" ErrorMessage="Ошибка! Поле для ввода года публикации должно быть заполнено!">Ошибка! Поле для ввода года публикации должно быть заполнено!</asp:RequiredFieldValidator>
+        <br />
+        <asp:RangeValidator ID="RangeValidator3" runat="server" ControlToValidate="TextBox1" ErrorMessage="Ошибка! Регистрационный номер должен состоять из 10 символов!" MaximumValue="9999999999" MinimumValue="1000000000" Type="Double">Ошибка! Регистрационный номер должен состоять из 10 символов!</asp:RangeValidator>
     </form>
 </body>
 </html>

@@ -19,7 +19,10 @@ namespace WebDataBase
 
 		protected void Page_Load(object sender, EventArgs e)
 		{
-
+			RequiredFieldValidator1.Enabled = false;
+			RequiredFieldValidator2.Enabled = false;
+			RequiredFieldValidator3.Enabled = false;
+			RequiredFieldValidator4.Enabled = false;
 		}
 
 		private bool CheckOrientedData(String reg, String pages, String year, String section)
@@ -124,21 +127,22 @@ namespace WebDataBase
 
 		protected void Button1_Click(object sender, EventArgs e)
 		{
-			TextBox1.Text = TextBox1.Text.Trim();
-			TextBox2.Text = TextBox2.Text.Trim();
-			TextBox3.Text = TextBox3.Text.Trim();
-			TextBox4.Text = TextBox4.Text.Trim();
+			RequiredFieldValidator1.Enabled = true;
+			RequiredFieldValidator2.Enabled = true;
+			RequiredFieldValidator3.Enabled = true;
+			RequiredFieldValidator4.Enabled = true;
 
-			if ((!WebFormDefault.CheckTextBoxes(new List<TextBox>()
-			{
-				TextBox1, TextBox2, TextBox3, TextBox4
-			})) || (!CheckOrientedData(TextBox1.Text, TextBox2.Text, TextBox3.Text, TextBox4.Text))){
-				Server.Transfer("Error_ReaderTable\\NotCorrectInputData.aspx", false);
+			Page.Validate();
+			if (!Page.IsValid)
 				return;
-			}
 
 			SqlDataSource1.Insert();
 			GridView1.DataBind();
+
+			RequiredFieldValidator1.Enabled = false;
+			RequiredFieldValidator2.Enabled = false;
+			RequiredFieldValidator3.Enabled = false;
+			RequiredFieldValidator4.Enabled = false;
 		}
 
 		protected void SqlDataSource1_Inserted(object sender, SqlDataSourceStatusEventArgs e)
@@ -190,22 +194,28 @@ namespace WebDataBase
 
 		protected void Button4_Click(object sender, EventArgs e)
 		{
-			if ((GridView1 == null) 
-				|| (GridView1.SelectedRow == null) 
-				|| (GridView1.SelectedRow.RowIndex < 0) 
-				|| (!CheckOrientedData(
-					GridView1.SelectedRow.Cells[0].Text,
-					GridView1.SelectedRow.Cells[1].Text,
-					GridView1.SelectedRow.Cells[2].Text,
-					GridView1.SelectedRow.Cells[3].Text)))
-			{
-				Server.Transfer("Error_ReaderTable\\NotCorrectInputData.aspx", false);
+			TextBox1.Text = TextBox1.Text.Trim();
+			TextBox2.Text = TextBox2.Text.Trim();
+			TextBox3.Text = TextBox3.Text.Trim();
+			TextBox4.Text = TextBox4.Text.Trim();
+
+			RequiredFieldValidator1.Enabled = true;
+			RequiredFieldValidator2.Enabled = true;
+			RequiredFieldValidator3.Enabled = true;
+			RequiredFieldValidator4.Enabled = true;
+			Page.Validate();
+
+			if (!Page.IsValid)
 				return;
-			}
 			
 			SqlDataSource1.Update();
 			GridView1.DataBind();
 			TextBox1.ReadOnly = false;
+
+			RequiredFieldValidator1.Enabled = false;
+			RequiredFieldValidator2.Enabled = false;
+			RequiredFieldValidator3.Enabled = false;
+			RequiredFieldValidator4.Enabled = false;
 		}
 
 		protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)

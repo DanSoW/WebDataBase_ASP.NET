@@ -16,7 +16,7 @@ namespace WebDataBase.Error_RegisterTable
 
 		protected void Button1_Click(object sender, EventArgs e)
 		{
-			Server.Transfer("..\\WebFormReader.aspx", false);
+			Server.Transfer("../WebFormReader.aspx", false);
 		}
 	}
 }
